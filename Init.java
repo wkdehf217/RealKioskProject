@@ -460,6 +460,7 @@ public class Init {
             }
             //totalPrice 출력
             System.out.println();
+            System.out.println("요청사항 있으신가요?");
             System.out.printf(" [ 1. 결제하기 : %d | 2. 메뉴 추가 ]\n", totalPrice);
             System.out.println("===============================================================================================");
             inputString = scanner.nextLine();
