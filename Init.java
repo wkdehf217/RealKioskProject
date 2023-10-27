@@ -4,6 +4,7 @@ import java.util.*;
 public class Init {
     private Map<String, List<Item>> menuItems;
     private List<Item> cart;
+    private List<Item> waitingOrderList;
     private long totalPrice;
     private int orderNumber;
     private HashMap<Integer, List<Item>> dailyOrderList;
@@ -101,7 +102,7 @@ public class Init {
                =========================================================
                
                
-                [ 1. 판매 현황  | 2. 주문 목록 | 3. 메뉴 관리 | 4. 뒤로 가기 ]
+                [ 1. 판매 현황  | 2. 주문 목록 | 3. 메뉴 관리 | 4. 뒤로 가기 5.대기 주문 목록]
               
               
                =========================================================
@@ -110,6 +111,10 @@ public class Init {
         int select = kioskScanner(inputString);
         System.out.print(">");
         switch (select) {
+            case 5:
+                //for(int i=0;i<waitingOrderList.size();i++){
+                    //System.out.println(waitingOrderList.get(i).get(i).name);
+                //}
             case 1:
                 System.out.println("============================");
                 System.out.println(" [ Daily Report ] ");
@@ -341,7 +346,10 @@ public class Init {
         System.out.print(">");
         inputString = scanner.nextLine();
         int selectItem = kioskScanner(inputString);
-        if (selectItem == burgerMenu.size()+1) {
+        if(selectItem == -1 || selectItem > burgerMenu.size()+3){
+            System.out.println("잘못 입력하셨습니다.");
+            burgerPage();
+        } else if (selectItem == burgerMenu.size()+1) {
             orderPage();
         } else if (selectItem == burgerMenu.size()+2) {
             clearCart();
@@ -364,7 +372,7 @@ public class Init {
              "SHAKESHACK BURGER 에 오신걸 환영합니다."
              아래 상품메뉴판을 보시고 상품을 골라 입력해주세요.
                                 
-            [ DrozenCustard MENU ]""");
+            [ frozenCustard MENU ]""");
         List<Item> frozenCustardMenu = menuItems.get("frozenCustard");
         for(int i = 0; i < frozenCustardMenu.size(); i++) {
             System.out.printf(" %d. %-25s|    W  %-6d   | %s\n", i+1, frozenCustardMenu.get(i).name, frozenCustardMenu.get(i).price, frozenCustardMenu.get(i).description);
@@ -384,7 +392,10 @@ public class Init {
         System.out.print(">");
         inputString = scanner.nextLine();
         int selectItem = kioskScanner(inputString);
-        if (selectItem == frozenCustardMenu.size()+1) {
+        if(selectItem == -1 || selectItem > frozenCustardMenu.size()+3){
+            System.out.println("잘못 입력하셨습니다.");
+            frozenCustardPage();
+        } else if (selectItem == frozenCustardMenu.size()+1) {
             orderPage();
         } else if (selectItem == frozenCustardMenu.size()+2) {
             clearCart();
@@ -427,7 +438,10 @@ public class Init {
         System.out.print(">");
         inputString = scanner.nextLine();
         int selectItem = kioskScanner(inputString);
-        if (selectItem == drinkMenu.size()+1) {
+        if(selectItem == -1 || selectItem > drinkMenu.size()+3){
+            System.out.println("잘못 입력하셨습니다.");
+            drinkPage();
+        } else if (selectItem == drinkMenu.size()+1) {
             orderPage();
         } else if (selectItem == drinkMenu.size()+2) {
             clearCart();
