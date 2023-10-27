@@ -8,7 +8,7 @@ public class Init {
     private long totalPrice;
     private int orderNumber;
     private HashMap<Integer, List<Item>> dailyOrderList;
-    public ArrayList<List<Item>> waitItemList = new ArrayList<>();  //waitingNumber랑 세트
+    public ArrayList<List<Item>> waitItemList;   //waitingNumber랑 세트
     private long dailySales;
     private long waitingNumber;
     private int dailyOrderCount;
@@ -35,6 +35,7 @@ public class Init {
         orderNumber = 0;
         dailySales = 0;
         dailyOrderCount = 0;
+        waitItemList = new ArrayList<>();
 //
         initMenuItems();
     }
@@ -221,6 +222,11 @@ public class Init {
                                 System.out.println("관리자 페이지 메인으로 나갑니다");
                                 adminPage();
                         }
+                    case 3:
+                        System.out.println("숫자를 잘못 입력하셨습니다");
+                        System.out.println("관리자 페이지 메인으로 나갑니다");
+                        adminPage();
+                        break;
                     case -1:
                         System.out.println("숫자를 잘못 입력하셨습니다");
                         System.out.println("관리자 페이지 메인으로 나갑니다");
@@ -494,9 +500,7 @@ public class Init {
                     System.out.println(" 주문해주셔서 감사합니다\n");
                     System.out.printf(" [ 주문 번호: %d ]\n",  ++orderNumber, ++waitingNumber);                     // 하루 주문 건수
                     dailyOrderList.put(orderNumber, new ArrayList<>(cart));
-
-                        this.waitItemList.add(cart);
-                        System.out.println(cart+"cart가 wait에 담김");
+                        this.waitItemList.add(new ArrayList<>(cart));
 
                     System.out.println("대기번호: " + waitingNumber);
                     System.out.println();
@@ -606,10 +610,8 @@ public class Init {
 
         //아이탬이름, 대기번호 출력
         for(int i=0;i<waitItemList.size();i++) {
-            System.out.println("i: "+i);
             for (int j = 0; j < waitItemList.get(i).size(); j++) {
-                System.out.println("j:"+j);
-                System.out.println("메뉴: " + waitItemList.get(i).get(j).name + " | 대기번호: " + i + 1);
+                System.out.println("메뉴: " + waitItemList.get(i).get(j).name + " | 대기번호: " + (i + 1));
             }
         }
 
