@@ -1,4 +1,5 @@
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class Init {
@@ -9,6 +10,8 @@ public class Init {
     private HashMap<Integer, List<Item>> dailyOrderList;
     private long dailySales;
     private int dailyOrderCount;
+    private String request;
+    private LocalDateTime dt;
     Scanner scanner = new Scanner(System.in);
     private String inputString;
     private int input;
@@ -32,6 +35,7 @@ public class Init {
         orderNumber = 0;
         dailySales = 0;
         dailyOrderCount = 0;
+        dt = null;
 //
         initMenuItems();
     }
@@ -463,24 +467,39 @@ public class Init {
             System.out.printf(" [ 1. 결제하기 : %d | 2. 메뉴 추가 ]\n", totalPrice);
             System.out.println("===============================================================================================");
             inputString = scanner.nextLine();
-            int select = kioskScanner(inputString);
-            switch (select) {
+            System.out.print("주문 요청사항을 입력해 주세요>");
+            String select2 = scanner.nextLine();
+            request = select2;
+            String dt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+            int select1 = kioskScanner(inputString);
+            switch (select1) {
                 case 1:
                     //결제 하고, 대기번호 출력, 오더리스트로 옮기기 그 후 cart.clear()
                     System.out.println("=============================================");
                     System.out.println();
-                    System.out.println(" 주문해주셔서 감사합니다\n");
-                    System.out.printf(" [ 주문 번호: %d ]\n",  ++orderNumber);                     // 하루 주문 건수
-                    dailyOrderList.put(orderNumber, new ArrayList<>(cart));
+                    System.out.println(" [ 주문해주셔서 감사합니다 ]");
                     System.out.println();
+                    System.out.printf(" 주문 번호: %d \n",  ++orderNumber);
+                    System.out.println();
+                    System.out.println(" [ 주문 목록 ]");
+                    for (int i = 0; i < cart.size(); i++) {
+                        System.out.printf(" %d. %-25s|    W  %-6d   | %s\n", i+1, cart.get(i).name, cart.get(i).price, cart.get(i).description);
+                    }
+                    System.out.println();
+                    System.out.println(" 요청사항: " + request);// 하루 주문 건수
+                    System.out.println(" 주문 시간: " + dt);
+                    dailyOrderList.put(orderNumber, new ArrayList<>(cart));
                     System.out.println();
                     System.out.println("=============================================");
                     //orderList는 관리자 페이지에서 쓸때 가져가서 쓰면 될 듯 합니다
                     dailySales += totalPrice;                                                    //dailySales 하루 매출
                     dailyOrderCount =orderNumber;                                                // 하루 주문 횟수
 
-                    totalPrice = 0;          // 합계 금액 0으로 초기화
-                    cart.clear();            // 장바구니 초기화
+                    //다음 주문을 위한 초기화
+                    totalPrice = 0;
+                    cart.clear();
+                    request = "";
+                    dt = null;
                     mainMenuPage();
                     break;
                 case 2:
