@@ -575,16 +575,20 @@ public class Init {
     public void addMenu() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("추가할 메뉴의 종류를 입력해 주세요");
+        System.out.print("(burger), (drink), (frozenCustard)");
         System.out.print(">");
         String menu = scanner.nextLine();
-        menuItems.get(menu);
+        if (!menu.equals("burger") && !menu.equals("drink") && !menu.equals("frozenCustard")) {
+            System.out.println("다시 입력해주세요.");
+            addMenu();
+        }
         System.out.print("추가할 메뉴의 이름을 입력해 주세요");
         System.out.print(">");
         String name = scanner.nextLine();
         System.out.print("추가할 메뉴의 설명을 입력해 주세요");
         System.out.print(">");
         String description = scanner.nextLine();
-        System.out.print("추가할 메뉴의 가격을 입력해 주세요");
+        System.out.print("추가할 메뉴의 가격을 입력해 주세요(숫자만)");
         System.out.print(">");
         int price = scanner.nextInt();
         scanner.nextLine();
@@ -596,12 +600,39 @@ public class Init {
         addDeletePage();
     }
     public void deleteMenu() {
-        Scanner scanner =new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
-        System.out.print("삭제할 메뉴의 종류를 입력해 주세요");
+        System.out.print("삭제할 메뉴의 종류를 입력해 주세요(burger), (drink), (frozenCustard)");
         System.out.print(">");
         String menu = scanner.nextLine();
-        System.out.print("삭제할 메뉴의 이름을 입력해 주세요");
+        if (!menu.equals("burger") && !menu.equals("drink") && !menu.equals("frozenCustard")) {
+            System.out.println("다시 입력해주세요.");
+            deleteMenu();
+        }
+        System.out.println("삭제할 메뉴의 이름을 입력해 주세요");
+
+        switch (menu) {
+
+            case "burger":
+                for (int i = 0; i < menuItems.get("burger").size(); i++) {
+                    System.out.println(menuItems.get("burger").get(i).name);
+                }
+                break;
+            case "frozenCustard":
+                for (int i = 0; i < menuItems.get("frozenCustard").size(); i++) {
+                    System.out.println(menuItems.get("frozenCustard").get(i).name);
+                }
+                break;
+            case "drink":
+                for (int i = 0; i < menuItems.get("drink").size(); i++) {
+                    System.out.println(menuItems.get("drink").get(i).name);
+                }
+                break;
+            default:
+                System.out.println("잘못 입력하셨습니다.");
+                deleteMenu();
+        }
+
         System.out.print(">");
         String name = scanner.nextLine();
 
