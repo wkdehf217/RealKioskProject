@@ -620,7 +620,7 @@ public class Init {
         int inputOrderNumber = scanner.nextInt()-1;
 
         for (int i=0;i<waitItemList.get(inputOrderNumber).size();i++) {
-            System.out.println(waitItemList.get(inputOrderNumber).get(i).name+"대기번호"+inputOrderNumber+"가 제거되었습니다.");
+            System.out.println(waitItemList.get(inputOrderNumber).get(i).name+"대기번호"+inputOrderNumber+1+"가 제거되었습니다.");
         }
 
         waitItemList.remove(inputOrderNumber);
