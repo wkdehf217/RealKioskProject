@@ -617,11 +617,10 @@ public class Init {
 
         System.out.println("대기번호를 입력해서 완료시키기: ");
         Scanner scanner = new Scanner(System.in);
-        int inputOrderNumber = scanner.nextInt()+1;
+        int inputOrderNumber = scanner.nextInt()-1;
 
-//        System.out.println(waitItemList.get(inputOrderNumber).name+"대기번호"+inputOrderNumber+"가 제거되었습니다.");
         for (int i=0;i<waitItemList.get(inputOrderNumber).size();i++) {
-            System.out.println(waitItemList.get(inputOrderNumber).get(i).name);
+            System.out.println(waitItemList.get(inputOrderNumber).get(i).name+"대기번호"+inputOrderNumber+"가 제거되었습니다.");
         }
 
         waitItemList.remove(inputOrderNumber);
