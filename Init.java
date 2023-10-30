@@ -12,6 +12,7 @@ public class Init {
     Scanner scanner = new Scanner(System.in);
     private String inputString;
     private int input;
+
     // 스캐너 함수입니다
     public static int kioskScanner(String scantest) {
         int num = 0;
@@ -22,6 +23,7 @@ public class Init {
         }
         return num;
     }
+
     //객체 생성
     public Init() {
 //        menus = new HashMap<>();
@@ -69,17 +71,15 @@ public class Init {
     }
 
 
-
-
     public void firstPage() {
         System.out.println("""
-             ================================================
-              
- 
-              [ 1. 관리자 모드 | 2. 판매 시작 | 3. 프로그램 종료 ]
-         
- 
-             ================================================""");
+                ================================================
+                 
+                 
+                 [ 1. 관리자 모드 | 2. 판매 시작 | 3. 프로그램 종료 ]
+                         
+                 
+                ================================================""");
         inputString = scanner.nextLine();
         int input = kioskScanner(inputString);
         System.out.print(">");
@@ -87,25 +87,29 @@ public class Init {
             case 1 -> adminPage(); // 관리자 모드 들어가는 메소드 넣기
             case 2 -> mainMenuPage();
             case 3 -> System.out.println("프로그램을 종료합니다");
-            case -1 -> { System.out.println("잘못 입력하셨습니다"); firstPage(); }
-            default -> { System.out.println("잘못 입력하셨습니다"); firstPage(); }
+            case -1 -> {
+                System.out.println("잘못 입력하셨습니다");
+                firstPage();
+            }
+            default -> {
+                System.out.println("잘못 입력하셨습니다");
+                firstPage();
+            }
         }
     }
-
-
 
 
     //관리자 페이지
     public void adminPage() {
         System.out.println("""
-               =========================================================
-               
-               
-                [ 1. 판매 현황  | 2. 주문 목록 | 3. 메뉴 관리 | 4. 뒤로 가기 ]
-              
-              
-               =========================================================
-                """);
+                =========================================================
+                               
+                               
+                 [ 1. 판매 현황  | 2. 주문 목록 | 3. 메뉴 관리 | 4. 뒤로 가기 ]
+                              
+                              
+                =========================================================
+                 """);
         inputString = scanner.nextLine();
         int select = kioskScanner(inputString);
         System.out.print(">");
@@ -123,14 +127,18 @@ public class Init {
                 int adminSelect = kioskScanner(inputString);
                 switch (adminSelect) {
                     case 1 -> adminPage();
-                    case -1 -> { System.out.println("숫자를 잘못 입력하셨습니다");
+                    case -1 -> {
+                        System.out.println("숫자를 잘못 입력하셨습니다");
                         System.out.println("관리자 페이지 메인으로 나갑니다");
                         System.out.println();
-                        adminPage(); }
-                    default -> { System.out.println("숫자를 잘못 입력하셨습니다");
+                        adminPage();
+                    }
+                    default -> {
+                        System.out.println("숫자를 잘못 입력하셨습니다");
                         System.out.println("관리자 페이지 메인으로 나갑니다");
                         System.out.println();
-                        adminPage(); }
+                        adminPage();
+                    }
                 }
                 break;
             case 2:
@@ -151,7 +159,7 @@ public class Init {
                             List<Item> orderList = dailyOrderList.get(adminSelect3);
                             System.out.println("======================================");
                             System.out.println();
-                            for (Item item: orderList) {
+                            for (Item item : orderList) {
                                 totalPrice += item.price;
                                 System.out.printf(" %-25s|    %-15d\n", item.name, item.price);
                             }
@@ -169,7 +177,7 @@ public class Init {
                         System.out.print(">");
                         inputString = scanner.nextLine();
                         int adminSelect4 = kioskScanner(inputString);
-                        switch (adminSelect4){
+                        switch (adminSelect4) {
                             case 1:
                                 adminPage();
                             case -1:
@@ -184,7 +192,7 @@ public class Init {
                     case 2:
                         System.out.println("=================================");
                         System.out.println();
-                        for (int i = 1; i < dailyOrderList.size()+1; i++) {
+                        for (int i = 1; i < dailyOrderList.size() + 1; i++) {
                             System.out.println("주문번호: " + i);
                             for (int j = 0; j < dailyOrderList.get(i).size(); j++) {
                                 System.out.printf(" %-25s| %-15d\n", dailyOrderList.get(i).get(j).name, dailyOrderList.get(i).get(j).price);
@@ -196,7 +204,7 @@ public class Init {
                         System.out.println("=================================");
                         inputString = scanner.nextLine();
                         int select5 = kioskScanner(inputString);
-                        switch (select5){
+                        switch (select5) {
                             case 1:
                                 adminPage();
                             case -1:
@@ -238,13 +246,13 @@ public class Init {
     void addDeletePage() {
 
         System.out.println("""
-        =========================================
+                =========================================
 
 
-        [ 1. 메뉴 추가 | 2.메뉴 삭제 | 3. 뒤로 가기 ]
-       
-       
-        ==========================================""");
+                [ 1. 메뉴 추가 | 2.메뉴 삭제 | 3. 뒤로 가기 ]
+                       
+                       
+                ==========================================""");
         System.out.print(">");
         inputString = scanner.nextLine();
         int addDelete = kioskScanner(inputString);
@@ -252,8 +260,14 @@ public class Init {
             case 1 -> addMenu();
             case 2 -> deleteMenu();
             case 3 -> adminPage();
-            case -1 -> { System.out.println("잘못 입력하셨습니다"); addDeletePage(); }
-            default -> { System.out.println("잘못 입력하셨습니다"); addDeletePage(); }
+            case -1 -> {
+                System.out.println("잘못 입력하셨습니다");
+                addDeletePage();
+            }
+            default -> {
+                System.out.println("잘못 입력하셨습니다");
+                addDeletePage();
+            }
         }
     }
 
@@ -261,23 +275,23 @@ public class Init {
     //메인 페이지
     public void mainMenuPage() {
         System.out.println("""
-            =====================================================
-             "SHAKESHACK BURGER 에 오신걸 환영합니다."
-             아래 메뉴판을 보시고 메뉴를 골라 입력해주세요.
+                =====================================================
+                 "SHAKESHACK BURGER 에 오신걸 환영합니다."
+                 아래 메뉴판을 보시고 메뉴를 골라 입력해주세요.
+                                
+                 [ SHAKESHACK MENU ]
+                 1. Burgers         | 앵거스 비프 통살을 다져만든 버거
+                 2. Frozen Custard  | 매장에서 신선하게 만드는 아이스크림
+                 3. Drinks          | 매장에서 직접 만드는 음료
+                                
+                 [ ORDER MENU ]
+                 4. Order       | 장바구니를 확인 후 주문합니다.
+                 5. Cancel      | 진행중인 주문을 취소합니다.
                             
-             [ SHAKESHACK MENU ]
-             1. Burgers         | 앵거스 비프 통살을 다져만든 버거
-             2. Frozen Custard  | 매장에서 신선하게 만드는 아이스크림
-             3. Drinks          | 매장에서 직접 만드는 음료
                             
-             [ ORDER MENU ]
-             4. Order       | 장바구니를 확인 후 주문합니다.
-             5. Cancel      | 진행중인 주문을 취소합니다.
-            
-            
-             6. Home        | 처음 화면으로 돌아갑니다.
-            
-            =====================================================""");
+                 6. Home        | 처음 화면으로 돌아갑니다.
+                            
+                =====================================================""");
         System.out.print(">");
         inputString = scanner.nextLine();
         int select = kioskScanner(inputString);
@@ -311,41 +325,39 @@ public class Init {
     }
 
 
-
-
     //burger 메뉴 페이지
     public void burgerPage() {
         System.out.println("""
-            =========================================================================================================================================
-             "SHAKESHACK BURGER 에 오신걸 환영합니다."
-             아래 상품메뉴판을 보시고 상품을 골라 입력해주세요.
-                                
-             [ Burgers MENU ]""");
+                =========================================================================================================================================
+                 "SHAKESHACK BURGER 에 오신걸 환영합니다."
+                 아래 상품메뉴판을 보시고 상품을 골라 입력해주세요.
+                                    
+                 [ Burgers MENU ]""");
         List<Item> burgerMenu = menuItems.get("burger");
-        for(int i = 0; i < burgerMenu.size(); i++) {
-            System.out.printf(" %d. %-25s|    W %-9d| %s\n", i+1, burgerMenu.get(i).name, burgerMenu.get(i).price, burgerMenu.get(i).description);
+        for (int i = 0; i < burgerMenu.size(); i++) {
+            System.out.printf(" %d. %-25s|    W %-9d| %s\n", i + 1, burgerMenu.get(i).name, burgerMenu.get(i).price, burgerMenu.get(i).description);
         }
         System.out.println();
         System.out.println(" [Order Menu]");
-        System.out.printf(" %d. Order       | 장바구니를 확인 후 주문합니다.\n", burgerMenu.size()+1);
-        System.out.printf(" %d. Cancel      | 진행중인 주문을 취소합니다.\n", burgerMenu.size()+2);
+        System.out.printf(" %d. Order       | 장바구니를 확인 후 주문합니다.\n", burgerMenu.size() + 1);
+        System.out.printf(" %d. Cancel      | 진행중인 주문을 취소합니다.\n", burgerMenu.size() + 2);
         System.out.println();
-        System.out.printf(" %d. 뒤로 가기\n", burgerMenu.size()+3);
+        System.out.printf(" %d. 뒤로 가기\n", burgerMenu.size() + 3);
         System.out.println("=========================================================================================================================================");
 
         HashMap<Integer, Item> burgerdMap = new HashMap<>();
         for (int i = 1; i <= burgerMenu.size(); i++) {
-            burgerdMap.put(i, burgerMenu.get(i-1));
+            burgerdMap.put(i, burgerMenu.get(i - 1));
         }
 
         System.out.print(">");
         inputString = scanner.nextLine();
         int selectItem = kioskScanner(inputString);
-        if (selectItem == burgerMenu.size()+1) {
+        if (selectItem == burgerMenu.size() + 1) {
             orderPage();
-        } else if (selectItem == burgerMenu.size()+2) {
+        } else if (selectItem == burgerMenu.size() + 2) {
             clearCart();
-        } else if (selectItem == burgerMenu.size()+3) {
+        } else if (selectItem == burgerMenu.size() + 3) {
             mainMenuPage();
         } else {
             cart.add(burgerdMap.get(selectItem));
@@ -355,40 +367,38 @@ public class Init {
     }
 
 
-
-
     //frozenCustard 메뉴 페이지
     public void frozenCustardPage() {
         System.out.println("""
-            ===========================================================================================================
-             "SHAKESHACK BURGER 에 오신걸 환영합니다."
-             아래 상품메뉴판을 보시고 상품을 골라 입력해주세요.
-                                
-            [ DrozenCustard MENU ]""");
+                ===========================================================================================================
+                 "SHAKESHACK BURGER 에 오신걸 환영합니다."
+                 아래 상품메뉴판을 보시고 상품을 골라 입력해주세요.
+                                    
+                [ DrozenCustard MENU ]""");
         List<Item> frozenCustardMenu = menuItems.get("frozenCustard");
-        for(int i = 0; i < frozenCustardMenu.size(); i++) {
-            System.out.printf(" %d. %-25s|    W  %-6d   | %s\n", i+1, frozenCustardMenu.get(i).name, frozenCustardMenu.get(i).price, frozenCustardMenu.get(i).description);
+        for (int i = 0; i < frozenCustardMenu.size(); i++) {
+            System.out.printf(" %d. %-25s|    W  %-6d   | %s\n", i + 1, frozenCustardMenu.get(i).name, frozenCustardMenu.get(i).price, frozenCustardMenu.get(i).description);
         }
         System.out.println();
         System.out.println(" [Order Menu]");
-        System.out.printf(" %d. Order           | 장바구니를 확인 후 주문합니다.\n", frozenCustardMenu.size()+1);
-        System.out.printf(" %d. Cancel          | 진행중인 주문을 취소합니다.\n", frozenCustardMenu.size()+2);
+        System.out.printf(" %d. Order           | 장바구니를 확인 후 주문합니다.\n", frozenCustardMenu.size() + 1);
+        System.out.printf(" %d. Cancel          | 진행중인 주문을 취소합니다.\n", frozenCustardMenu.size() + 2);
         System.out.println();
-        System.out.printf(" %d. 뒤로 가기\n", frozenCustardMenu.size()+3);
+        System.out.printf(" %d. 뒤로 가기\n", frozenCustardMenu.size() + 3);
         System.out.println("===========================================================================================================");
 
         HashMap<Integer, Item> frozenCustardMap = new HashMap<>();
         for (int i = 1; i <= frozenCustardMenu.size(); i++) {              // HashMap애 키값 1부터 담는중, 1부터 프로즌 메뉴리스트.사이즈 값(7)까지 1부터 7까지 돈다
-            frozenCustardMap.put(i, frozenCustardMenu.get(i-1));
+            frozenCustardMap.put(i, frozenCustardMenu.get(i - 1));
         }
         System.out.print(">");
         inputString = scanner.nextLine();
         int selectItem = kioskScanner(inputString);
-        if (selectItem == frozenCustardMenu.size()+1) {
+        if (selectItem == frozenCustardMenu.size() + 1) {
             orderPage();
-        } else if (selectItem == frozenCustardMenu.size()+2) {
+        } else if (selectItem == frozenCustardMenu.size() + 2) {
             clearCart();
-        } else if (selectItem == frozenCustardMenu.size()+3) {
+        } else if (selectItem == frozenCustardMenu.size() + 3) {
             mainMenuPage();
         } else {
             cart.add(frozenCustardMap.get(selectItem));
@@ -398,40 +408,38 @@ public class Init {
     }
 
 
-
-
     //Drink 메뉴 페이지
     public void drinkPage() {
         System.out.println("""
-            ===========================================================================================================
-             "SHAKESHACK BURGER 에 오신걸 환영합니다."
-             아래 상품메뉴판을 보시고 상품을 골라 입력해주세요.
-                                
-             [ Drink MENU ]""");
+                ===========================================================================================================
+                 "SHAKESHACK BURGER 에 오신걸 환영합니다."
+                 아래 상품메뉴판을 보시고 상품을 골라 입력해주세요.
+                                    
+                 [ Drink MENU ]""");
         List<Item> drinkMenu = menuItems.get("drink");
-        for(int i = 0; i < drinkMenu.size(); i++) {
-            System.out.printf(" %d. %-25s|    W  %-6d   | %s\n", i+1, drinkMenu.get(i).name, drinkMenu.get(i).price, drinkMenu.get(i).description);
+        for (int i = 0; i < drinkMenu.size(); i++) {
+            System.out.printf(" %d. %-25s|    W  %-6d   | %s\n", i + 1, drinkMenu.get(i).name, drinkMenu.get(i).price, drinkMenu.get(i).description);
         }
         System.out.println();
         System.out.println(" [Order Menu]");
-        System.out.printf(" %d. Order       | 장바구니를 확인 후 주문합니다.\n", drinkMenu.size()+1);
-        System.out.printf(" %d. Cancel      | 진행중인 주문을 취소합니다.\n", drinkMenu.size()+2);
+        System.out.printf(" %d. Order       | 장바구니를 확인 후 주문합니다.\n", drinkMenu.size() + 1);
+        System.out.printf(" %d. Cancel      | 진행중인 주문을 취소합니다.\n", drinkMenu.size() + 2);
         System.out.println();
-        System.out.printf(" %d. 뒤로 가기\n", drinkMenu.size()+3);
+        System.out.printf(" %d. 뒤로 가기\n", drinkMenu.size() + 3);
         System.out.println("===========================================================================================================");
 
         HashMap<Integer, Item> drinkMap = new HashMap<>();
         for (int i = 1; i <= drinkMenu.size(); i++) {
-            drinkMap.put(i, drinkMenu.get(i-1));
+            drinkMap.put(i, drinkMenu.get(i - 1));
         }
         System.out.print(">");
         inputString = scanner.nextLine();
         int selectItem = kioskScanner(inputString);
-        if (selectItem == drinkMenu.size()+1) {
+        if (selectItem == drinkMenu.size() + 1) {
             orderPage();
-        } else if (selectItem == drinkMenu.size()+2) {
+        } else if (selectItem == drinkMenu.size() + 2) {
             clearCart();
-        } else if (selectItem == drinkMenu.size()+3) {
+        } else if (selectItem == drinkMenu.size() + 3) {
             mainMenuPage();
         } else {
             cart.add(drinkMap.get(selectItem));
@@ -441,21 +449,19 @@ public class Init {
     }
 
 
-
-
     //장바구니 페이지
     public void orderPage() {
         if (!cart.isEmpty()) {
             System.out.println("""
-                ===============================================================================================
-                 "SHAKESHACK BURGER 에 오신걸 환영합니다."
-                 아래 상품메뉴판을 보시고 상품을 골라 입력해주세요.
+                    ===============================================================================================
+                     "SHAKESHACK BURGER 에 오신걸 환영합니다."
+                     아래 상품메뉴판을 보시고 상품을 골라 입력해주세요.
 
-                 [ ORDER ]""");
+                     [ ORDER ]""");
 
             //cart 리스트 출력, totalPrice 계산
             for (int i = 0; i < cart.size(); i++) {
-                System.out.printf(" %d. %-25s|    W  %-6d   | %s\n", i+1, cart.get(i).name, cart.get(i).price, cart.get(i).description);
+                System.out.printf(" %d. %-25s|    W  %-6d   | %s\n", i + 1, cart.get(i).name, cart.get(i).price, cart.get(i).description);
                 totalPrice = totalPrice + cart.get(i).price;
             }
             //totalPrice 출력
@@ -471,14 +477,14 @@ public class Init {
                     System.out.println("=============================================");
                     System.out.println();
                     System.out.println(" 주문해주셔서 감사합니다\n");
-                    System.out.printf(" [ 주문 번호: %d ]\n",  ++orderNumber);                     // 하루 주문 건수
+                    System.out.printf(" [ 주문 번호: %d ]\n", ++orderNumber);                     // 하루 주문 건수
                     dailyOrderList.put(orderNumber, new ArrayList<>(cart));
                     System.out.println();
                     System.out.println();
                     System.out.println("=============================================");
                     //orderList는 관리자 페이지에서 쓸때 가져가서 쓰면 될 듯 합니다
                     dailySales += totalPrice;                                                    //dailySales 하루 매출
-                    dailyOrderCount =orderNumber;                                                // 하루 주문 횟수
+                    dailyOrderCount = orderNumber;                                                // 하루 주문 횟수
 
                     totalPrice = 0;          // 합계 금액 0으로 초기화
                     cart.clear();            // 장바구니 초기화
@@ -496,20 +502,18 @@ public class Init {
             }
         } else {
             System.out.println("""
-             ==========================================
-              "SHAKESHACK BURGER 에 오신걸 환영합니다."
-              아래 상품메뉴판을 보시고 상품을 골라 입력해주세요.
-                    
-                    
-                    
-              [ 장바구니가 비어있습니다 ]
+                    ==========================================
+                     "SHAKESHACK BURGER 에 오신걸 환영합니다."
+                     아래 상품메뉴판을 보시고 상품을 골라 입력해주세요.
+                           
+                           
+                           
+                     [ 장바구니가 비어있습니다 ]
 
-             ==========================================""");
+                    ==========================================""");
             mainMenuPage();
         }
     }
-
-
 
 
     //장바구니 비우기, 비운 후 메인화면 이동
@@ -518,7 +522,6 @@ public class Init {
         cart.clear();
         mainMenuPage();
     }
-
 
 
     public void addMenu() {
@@ -539,8 +542,9 @@ public class Init {
         System.out.println("메뉴가 추가되었습니다");
         addDeletePage();
     }
+
     public void deleteMenu() {
-        Scanner scanner =new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
         System.out.print("삭제할 메뉴의 종류를 입력해 주세요");
         System.out.print(">");
